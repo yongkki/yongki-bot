@@ -56,10 +56,10 @@ router.post('/message', function(req, res, next) {
       }
     })
   }
-  else if (req.body.content == "명렁어"){
+  else if (req.body.content == "명령어"){
     res.json({
       message : {
-        text : "생일/인사/제작자"
+        text : "명령어 목록 : 생일/인사/제작자"
       }
     });
   }
@@ -80,7 +80,7 @@ router.post('/message', function(req, res, next) {
   else {
     res.json({
       message : {
-        text : "아직 구현중"
+        text : "명령어 목록은 "명령어"를 통해서 확인 가능합니다."
       }
     });
   }
