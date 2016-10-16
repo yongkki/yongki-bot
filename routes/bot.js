@@ -34,7 +34,7 @@ router.post('/message', function(req, res, next) {
             if (rows.length > 0){
               var message = "오늘의 생일자는 ";
               for (var i = 0; i<rows.length; i++){
-                message += row[i].field + "파트" + row[i].name + " ";
+                message += rows[i].field + " 파트" + rows[i].name + " ";
               }
               message += "입니다.";
               res.json({
@@ -56,33 +56,43 @@ router.post('/message', function(req, res, next) {
       }
     })
   }
-  else if (req.body.content == "명령어"){
-    res.json({
-      message : {
-        text : "명령어 목록 : 생일/인사/제작자"
+  else if (req.body.content == "치킨"){
+    pool.getConnection(function(error, connection){
+      if (error)
+        console.log("getConnection Error" + error);
+      else{
+        connection.query('select * from chicken order by rand() limit 1',function(error, rows){
+          if (error)
+            console.log("Connection Error" + error);
+          else {
+            var message = "오늘의 추천 치킨은 " + rows[0].store + "의 " + rows[0].menu + "입니다."
+              res.json({message : {text : message}});
+              connection.release();
+            }
+        });
       }
-    });
-  }
-  else if (req.body.content == "인사"){
-    res.json({
-      message : {
-        text : "안녕하세요"
-      }
-    });
-  }
-  else if (req.body.content == "제작자"){
-    res.json({
-      message : {
-        text : "용키"
-      }
-    });
+    })
   }
   else {
-    res.json({
-      message : {
-        text : "명령어 목록은 "명령어"를 통해서 확인 가능합니다."
+    pool.getConnection(function(error, connection){
+      if (error)
+        console.log("getConnection Error" + error);
+      else{
+        connection.query('select * from message where question = ?', req.body.content,function(error, rows){
+          if (error)
+            console.log("Connection Error" + error);
+          else {
+            if (rows.length > 0){
+              res.json({message : {text : rows[0].answer}});
+            }
+            else {
+              res.json({message : {text : "응답 문구 준비중... ([명령어]를 치시면 명령어 목록을 확인 할 수 있어요.)"}});
+            }
+            connection.release();
+          }
+        });
       }
-    });
+    })
   }
 });
 
