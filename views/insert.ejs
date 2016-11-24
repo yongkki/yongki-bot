@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>메시지 추가</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <form action="/admin/messages" method="post">
+      <table>
+        <tr>
+          <td>
+            question
+          </td>
+          <td>
+            <input type="text" name="question" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            answer
+          </td>
+          <td>
+            <input type="text" name="answer" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            password
+          </td>
+          <td>
+            <input type="text" name="password" />
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <input type="submit" value="등록" />
+          </td>
+        </tr>
+      </table>
+    </form>
+  </body>
+</html>

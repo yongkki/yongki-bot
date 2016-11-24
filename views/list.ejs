@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>메시지 목록</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <table border="1">
+      <tr>
+        <th>question</th>
+        <th>answer</th>
+      </tr>
+      <% for (var i = 0; i < message.length; i++){ %>
+        <tr>
+          <td>
+            <%= message[i].question %>
+          </td>
+          <td>
+            <%= message[i].answer %>
+          </td>
+        </tr>
+      <%}%>
+
+    </table>
+  </body>
+</html>

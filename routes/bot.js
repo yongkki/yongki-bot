@@ -14,7 +14,7 @@ var pool = mysql.createPool({
 
 var keyboard = {
   "type" : "text"
-}
+};
 
 /* GET home page. */
 router.get('/keyboard', function(req, res, next) {
@@ -41,7 +41,7 @@ router.post('/message', function(req, res, next) {
                 message : {
                   text : message
                 }
-              })
+              });
             }
             else {
             res.json({
@@ -54,7 +54,7 @@ router.post('/message', function(req, res, next) {
           }
         });
       }
-    })
+    });
   }
   else if (req.body.content == "치킨"){
     pool.getConnection(function(error, connection){
@@ -65,13 +65,13 @@ router.post('/message', function(req, res, next) {
           if (error)
             console.log("Connection Error" + error);
           else {
-            var message = "오늘의 추천 치킨은 " + rows[0].store + "의 " + rows[0].menu + "입니다."
+            var message = "오늘의 추천 치킨은 " + rows[0].store + "의 " + rows[0].menu + "입니다.";
               res.json({message : {text : message}});
               connection.release();
             }
         });
       }
-    })
+    });
   }
   else {
     pool.getConnection(function(error, connection){
@@ -92,7 +92,7 @@ router.post('/message', function(req, res, next) {
           }
         });
       }
-    })
+    });
   }
 });
 

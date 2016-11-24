@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>메시지 추가</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <form>
+      <table>
+        <tr>
+          <input type="button" onclick="location.href = '/admin/insertForm'" value="추가" />
+        </tr>
+        <tr>
+          <input type="button" onclick="location.href = '/admin/messages'" value="목록" />
+        </tr>
+      </table>
+    </form>
   </body>
 </html>
